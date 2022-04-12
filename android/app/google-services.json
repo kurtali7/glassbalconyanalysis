@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "363580058617",
+    "firebase_url": "https://cam-balkon-analiz.firebaseio.com",
+    "project_id": "cam-balkon-analiz",
+    "storage_bucket": "cam-balkon-analiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363580058617:android:c1e2692c98e43e252f2b28",
+        "android_client_info": {
+          "package_name": "com.kurt.cambalkonanaliz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363580058617-33l5jgvlubju6r3e2t90at6boop0a53t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kurt.cambalkonanaliz",
+            "certificate_hash": "3840cd21d414c766547ead0129692dd808cf701a"
+          }
+        },
+        {
+          "client_id": "363580058617-9m774jejtfti8i6g7nlt3dlup7ie9pvi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kurt.cambalkonanaliz",
+            "certificate_hash": "ae4e9d2ef910da296aff3dd8b75b8ed18adbfe55"
+          }
+        },
+        {
+          "client_id": "363580058617-g2he6b96fs2tl4b4fra7k5prs4f9kpmv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kurt.cambalkonanaliz",
+            "certificate_hash": "04d8c31b767819f2281851710901e151604c68a7"
+          }
+        },
+        {
+          "client_id": "363580058617-j9kqt8f9l2saqth6rumsdjheof5kbqvv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kurt.cambalkonanaliz",
+            "certificate_hash": "7628da5a399e759dabea5e98d147b624545c1d4b"
+          }
+        },
+        {
+          "client_id": "363580058617-t7ouhp1f64dj3m17pamq2ivll0vp4vjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKIycKY6szpMuwfBMPPc1X_sY32QmrzOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363580058617-odqbufjmgkn8i21cjdr0ekjn78p2ksui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "363580058617-9vq8sija6iq7i8glfbvcbv7plitafmr5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.camBalkonIsTakip",
+                "app_store_id": "1519795217"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9460196502670704~5080626351"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363580058617:android:cba98107d4c530e32f2b28",
+        "android_client_info": {
+          "package_name": "com.kurt.glassbalcony.glassbalconyanalysis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363580058617-a3jcf1ivse9u2g4o3j0hn07jns91kcje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kurt.glassbalcony.glassbalconyanalysis",
+            "certificate_hash": "7628da5a399e759dabea5e98d147b624545c1d4b"
+          }
+        },
+        {
+          "client_id": "363580058617-t7ouhp1f64dj3m17pamq2ivll0vp4vjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKIycKY6szpMuwfBMPPc1X_sY32QmrzOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363580058617-odqbufjmgkn8i21cjdr0ekjn78p2ksui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "363580058617-9vq8sija6iq7i8glfbvcbv7plitafmr5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.camBalkonIsTakip",
+                "app_store_id": "1519795217"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
