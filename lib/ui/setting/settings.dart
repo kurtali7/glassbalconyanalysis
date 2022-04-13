@@ -32,15 +32,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 color: CbaColors.Blue1,
               ),
               title: user?.name ?? '-',
-              subtitle: user?.email ?? '-',
+              subtitle: user?.mail ?? '-',
             ),
             SimpleSettingsTile(
               icon: Icon(
                 FontAwesomeIcons.dollarSign,
                 color: CbaColors.Blue1,
               ),
-              title: user!=null ? 'Premium Hesaba Sahipsiniz' : '-',
-              subtitle: user!=null ? 'Bitiş Tarihi: 01.01.2222' : '-',
+              title: user?.paketType ?? '-',
+              subtitle: user?.endDate.toString() ?? '-',
             ),
             ListTile(
                 leading: const Icon(

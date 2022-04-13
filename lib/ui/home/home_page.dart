@@ -25,7 +25,7 @@ class _HomePageState extends ConsumerState<HomePage>{
     final user = ref.watch(userViewModelProvider.select((value) => value.user));
 
     return Scaffold(
-      drawer: DrawerMenu(),
+      drawer: DrawerMenu(user: user),
       bottomNavigationBar: BottomNavMenu(),
       appBar: BaseAppBar(
           title: 'appname'.i18n(),
@@ -39,11 +39,11 @@ class _HomePageState extends ConsumerState<HomePage>{
           children: <Widget>[
             Padding(
                 padding: EdgeInsets.fromLTRB(8,8,0,0),
-                child: Text("Paket Tipi", style: TextStyle( color: CbaColors.PrimaryColor, fontSize: 12),)
+                child: Text(user?.paketType ?? '', style: TextStyle( color: CbaColors.PrimaryColor, fontSize: 12),)
             ),
             Padding(
                 padding: EdgeInsets.fromLTRB(8,4,8,0),
-                child: Text(user?.name?? "Test", style: TextStyle( color: CbaColors.PrimaryDarkColor, fontSize: 18, fontWeight: FontWeight.w700),)
+                child: Text(user?.name ?? 'lutfengirisyapiniz'.i18n(), style: TextStyle( color: CbaColors.PrimaryDarkColor, fontSize: 18, fontWeight: FontWeight.w700),)
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(8,4,8,12),

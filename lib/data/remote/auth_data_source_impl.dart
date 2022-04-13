@@ -12,8 +12,7 @@ class AuthDataSourceImpl implements AuthDataSource {
 
   final Reader _reader;
 
-  late final firebase.FirebaseAuth _firebaseAuth =
-      _reader(firebaseAuthProvider);
+  late final firebase.FirebaseAuth _firebaseAuth = _reader(firebaseAuthProvider);
 
   @override
   Future<firebase.User?> signIn() async {

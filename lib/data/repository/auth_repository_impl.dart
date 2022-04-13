@@ -1,4 +1,4 @@
-import 'package:glassbalconyanalysis/data/local/app_user.dart';
+import 'package:glassbalconyanalysis/data/model/app_user.dart';
 import 'package:glassbalconyanalysis/data/model/result.dart';
 import 'package:glassbalconyanalysis/data/remote/auth_data_source.dart';
 import 'package:glassbalconyanalysis/data/remote/auth_data_source_impl.dart';
@@ -16,8 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<AppUser>> signIn() {
-    return Result.guardFuture(
-        () async => AppUser.from(await _dataSource.signIn()));
+    return Result.guardFuture(() async => AppUser.from(await _dataSource.signIn()));
   }
 
   @override

@@ -1,4 +1,5 @@
-import 'package:glassbalconyanalysis/data/local/app_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:glassbalconyanalysis/data/model/app_user.dart';
 import 'package:glassbalconyanalysis/data/repository/auth_repository.dart';
 import 'package:glassbalconyanalysis/data/repository/auth_repository_impl.dart';
 import 'package:flutter/foundation.dart';
@@ -13,7 +14,8 @@ class UserViewModel extends ChangeNotifier {
 
   late final AuthRepository _repository = _reader(authRepositoryProvider);
 
-  AppUser? _user;
+  //get auth user from firebase
+  AppUser? _user = AppUser.from(FirebaseAuth.instance.currentUser);
 
   AppUser? get user => _user;
 

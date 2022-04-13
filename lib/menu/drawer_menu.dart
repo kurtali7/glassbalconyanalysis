@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:glassbalconyanalysis/data/model/app_user.dart';
 import 'package:localization/localization.dart';
 
 import '../ui/route/routing_constans.dart';
 import '../ui/theme/cba_colors.dart';
 
 class DrawerMenu extends StatefulWidget {
-  const DrawerMenu({Key? key}) : super(key: key);
+  final AppUser? user;
+
+  const DrawerMenu({Key? key, this.user}) : super(key: key);
 
   @override
-  State<DrawerMenu> createState() => _DrawerMenuState();
+  State<DrawerMenu> createState() => _DrawerMenuState(user);
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
+  final AppUser? user;
+
+  _DrawerMenuState(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,9 +38,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 Padding(
                   padding: EdgeInsets.only(top: 8.0),
                   child:
-                  Text("Kullanıcı Adı", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
+                  Text(user?.company?.yetkiliAdi ?? '', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
                 ),
-                Text("Firma Adı",
+                Text(user?.company?.name ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
