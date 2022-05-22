@@ -1,26 +1,33 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glassbalconyanalysis/ui/loading_state_view_model.dart';
-import 'package:glassbalconyanalysis/ui/theme/cba_colors.dart';
-import 'package:glassbalconyanalysis/ui/user_view_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:glassbalconyanalysis/data/model/app_user.dart';
+import 'package:glassbalconyanalysis/viewmodel/setting_view_model.dart';
 import 'package:localization/localization.dart';
 import 'package:shared_preferences_settings/shared_preferences_settings.dart';
+import '../ui/loading_state_view_model.dart' as loading;
+import '../ui/theme/cba_colors.dart';
 
-class SettingsPage extends StatefulHookConsumerWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  SettingsPage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsPageState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends ConsumerState<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage> {
+  SettingViewModel _viewModel = SettingViewModel();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _viewModel.getAuthUser();
+    print("userrr ${_viewModel.user?.paketType}");
+  }
+
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userViewModelProvider.select((value) => value.user));
-    final userViewModel = ref.watch(userViewModelProvider);
-    final loading = ref.watch(loadingStateProvider);
-
     return Scaffold(
       body: SettingsScreen(
         title: 'settings'.i18n(),
@@ -31,33 +38,37 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 FontAwesomeIcons.userLarge,
                 color: CbaColors.Blue1,
               ),
-              title: user?.name ?? '-',
-              subtitle: user?.mail ?? '-',
+              title: _viewModel.user?.name ?? '-',
+              subtitle: _viewModel.user?.mail ?? '-',
+              visibleByDefault: _viewModel.user != null ? true : false,
             ),
             SimpleSettingsTile(
               icon: Icon(
                 FontAwesomeIcons.dollarSign,
                 color: CbaColors.Blue1,
               ),
-              title: user?.paketType ?? '-',
-              subtitle: user?.endDate.toString() ?? '-',
+              title: _viewModel.user?.paketType ?? '-',
+              subtitle: _viewModel.user?.endDate.toString() ?? '-',
+              visibleByDefault: _viewModel.isAuthenticated ? true : false,
             ),
             ListTile(
                 leading: const Icon(
                   FontAwesomeIcons.arrowRightToBracket,
                   color: CbaColors.Blue1,
                 ),
-                title: Text(user!=null ? 'cikis'.i18n() : 'girisyap'.i18n()),
-                onTap: () => {
-                  if(user!=null){
-                    userViewModel.signOut
-                  }else{
-                    loading.whileLoading(() async {
-                      return ref.watch(userViewModelProvider).signIn();
+                title: Text(_viewModel.isAuthenticated
+                    ? 'cikis'.i18n()
+                    : 'girisyap'.i18n()),
+                onTap: () async => {
+                      if (_viewModel.isAuthenticated)
+                        await _viewModel.signOut()
+                      else
+                        await _viewModel.signIn(),
+
+                      setState(() {
+
+                      }),
                     })
-                  }
-                }
-            )
           ]),
           SettingsTileGroup(title: 'uygulamaayarlari'.i18n(), children: [
             RadioPickerSettingsTile(
@@ -82,11 +93,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 FontAwesomeIcons.moneyBill1,
                 color: CbaColors.Blue1,
               ),
-              values: {
-                'a': 'TL',
-                'b': 'EURO',
-                'c': 'DOLLAR'
-              },
+              values: {'a': 'TL', 'b': 'EURO', 'c': 'DOLLAR'},
               defaultKey: 'a',
               cancelCaption: 'cancel'.i18n(),
               okCaption: 'save'.i18n(),
@@ -180,7 +187,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 ),
               ),
               SimpleSettingsTile(
-                title: 'Doğru maliyet ve ölçü hesabı için önce sistem ayarlarınızı yapınız. Hesaplama işlemlerinden sonra kontrollerinizi tarafınızca sağlayınız. Oluşabilecek hatalardan tarafımız sorumlu değildir..',
+                title:
+                    'Doğru maliyet ve ölçü hesabı için önce sistem ayarlarınızı yapınız. Hesaplama işlemlerinden sonra kontrollerinizi tarafınızca sağlayınız. Oluşabilecek hatalardan tarafımız sorumlu değildir..',
               ),
             ],
           )

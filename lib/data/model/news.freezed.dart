@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'news.dart';
 
@@ -31,7 +33,7 @@ class _$NewsTearOff {
     );
   }
 
-  News fromJson(Map<String, Object> json) {
+  News fromJson(Map<String, Object?> json) {
     return News.fromJson(json);
   }
 }
@@ -136,8 +138,7 @@ class _$_News implements _News {
       required this.totalResults,
       required this.articles});
 
-  factory _$_News.fromJson(Map<String, dynamic> json) =>
-      _$_$_NewsFromJson(json);
+  factory _$_News.fromJson(Map<String, dynamic> json) => _$$_NewsFromJson(json);
 
   @override
   final String status;
@@ -154,23 +155,20 @@ class _$_News implements _News {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _News &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.totalResults, totalResults) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalResults, totalResults)) &&
-            (identical(other.articles, articles) ||
-                const DeepCollectionEquality()
-                    .equals(other.articles, articles)));
+        (other.runtimeType == runtimeType &&
+            other is _News &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.totalResults, totalResults) &&
+            const DeepCollectionEquality().equals(other.articles, articles));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(totalResults) ^
-      const DeepCollectionEquality().hash(articles);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(totalResults),
+      const DeepCollectionEquality().hash(articles));
 
   @JsonKey(ignore: true)
   @override
@@ -179,7 +177,7 @@ class _$_News implements _News {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_NewsToJson(this);
+    return _$$_NewsToJson(this);
   }
 }
 
@@ -192,11 +190,11 @@ abstract class _News implements News {
   factory _News.fromJson(Map<String, dynamic> json) = _$_News.fromJson;
 
   @override
-  String get status => throw _privateConstructorUsedError;
+  String get status;
   @override
-  int get totalResults => throw _privateConstructorUsedError;
+  int get totalResults;
   @override
-  List<Article> get articles => throw _privateConstructorUsedError;
+  List<Article> get articles;
   @override
   @JsonKey(ignore: true)
   _$NewsCopyWith<_News> get copyWith => throw _privateConstructorUsedError;

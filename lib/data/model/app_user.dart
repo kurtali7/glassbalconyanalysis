@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:glassbalconyanalysis/data/model/company.dart';
 import 'package:glassbalconyanalysis/data/model/enum/currency.dart';
 import 'package:glassbalconyanalysis/data/model/enum/user_type.dart';
@@ -31,5 +33,22 @@ class AppUser {
         UserType.GENEL,
         null
     );
+  }
+
+  factory AppUser.fromFirestore(DocumentSnapshot doc, User? user) {
+    AppUser t = AppUser(
+        doc["id"],
+        user?.uid,
+        user?.photoURL,
+        doc["name"],
+        user?.email,
+        new DateTime.now(),
+        doc["paketType"],
+        Currency.values.byName(doc["currency"] ?? "TL"),
+        UserType.values.byName(doc["userType"] ?? "GENEL"),
+        null
+    );
+
+    return t;
   }
 }

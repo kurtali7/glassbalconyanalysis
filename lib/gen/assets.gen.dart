@@ -2,38 +2,31 @@
 /// *****************************************************
 ///  FlutterGen
 /// *****************************************************
+
+// ignore_for_file: directives_ordering,unnecessary_import
+
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
+class $LibGen {
+  const $LibGen();
 
-  AssetGenImage get articlePlaceholder =>
-      const AssetGenImage('assets/images/article_placeholder.webp');
-  AssetGenImage get iconPlaceholder =>
-      const AssetGenImage('assets/images/icon_placeholder.jpg');
+  $LibI18nGen get i18n => const $LibI18nGen();
 }
 
-class $AssetsSvgsGen {
-  const $AssetsSvgsGen();
+class $LibI18nGen {
+  const $LibI18nGen();
 
-  SvgGenImage get firebase => const SvgGenImage('assets/svgs/firebase.svg');
-  SvgGenImage get news => const SvgGenImage('assets/svgs/news.svg');
-  SvgGenImage get video => const SvgGenImage('assets/svgs/video.svg');
-}
+  /// File path: lib/i18n/en.json
+  String get en => 'lib/i18n/en.json';
 
-class $AssetsVideosGen {
-  const $AssetsVideosGen();
-
-  String get bigbuckbunny => 'assets/videos/bigbuckbunny.mp4';
+  /// File path: lib/i18n/tr.json
+  String get tr => 'lib/i18n/tr.json';
 }
 
 class Assets {
   Assets._();
 
-  static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
-  static const $AssetsVideosGen videos = $AssetsVideosGen();
+  static const $LibGen lib = $LibGen();
 }
 
 class AssetGenImage extends AssetImage {
@@ -83,49 +76,4 @@ class AssetGenImage extends AssetImage {
   }
 
   String get path => assetName;
-}
-
-class SvgGenImage {
-  const SvgGenImage(this._assetName);
-
-  final String _assetName;
-
-  SvgPicture svg({
-    Key? key,
-    bool matchTextDirection = false,
-    AssetBundle? bundle,
-    String? package,
-    double? width,
-    double? height,
-    BoxFit fit = BoxFit.contain,
-    AlignmentGeometry alignment = Alignment.center,
-    bool allowDrawingOutsideViewBox = false,
-    WidgetBuilder? placeholderBuilder,
-    Color? color,
-    BlendMode colorBlendMode = BlendMode.srcIn,
-    String? semanticsLabel,
-    bool excludeFromSemantics = false,
-    Clip clipBehavior = Clip.hardEdge,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      clipBehavior: clipBehavior,
-    );
-  }
-
-  String get path => _assetName;
 }

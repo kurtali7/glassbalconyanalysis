@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'source.dart';
 
@@ -27,7 +29,7 @@ class _$SourceTearOff {
     );
   }
 
-  Source fromJson(Map<String, Object> json) {
+  Source fromJson(Map<String, Object?> json) {
     return Source.fromJson(json);
   }
 }
@@ -119,7 +121,7 @@ class _$_Source with DiagnosticableTreeMixin implements _Source {
   _$_Source({this.id, this.name});
 
   factory _$_Source.fromJson(Map<String, dynamic> json) =>
-      _$_$_SourceFromJson(json);
+      _$$_SourceFromJson(json);
 
   @override
   final String? id;
@@ -143,18 +145,17 @@ class _$_Source with DiagnosticableTreeMixin implements _Source {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Source &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is _Source &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +164,7 @@ class _$_Source with DiagnosticableTreeMixin implements _Source {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SourceToJson(this);
+    return _$$_SourceToJson(this);
   }
 }
 
@@ -173,9 +174,9 @@ abstract class _Source implements Source {
   factory _Source.fromJson(Map<String, dynamic> json) = _$_Source.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$SourceCopyWith<_Source> get copyWith => throw _privateConstructorUsedError;

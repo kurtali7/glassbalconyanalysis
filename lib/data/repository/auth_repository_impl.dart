@@ -1,26 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:glassbalconyanalysis/data/model/app_user.dart';
 import 'package:glassbalconyanalysis/data/model/result.dart';
-import 'package:glassbalconyanalysis/data/remote/auth_data_source.dart';
-import 'package:glassbalconyanalysis/data/remote/auth_data_source_impl.dart';
 import 'package:glassbalconyanalysis/data/repository/auth_repository.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-final authRepositoryProvider = Provider((ref) => AuthRepositoryImpl(ref.read));
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._reader);
 
-  final Reader _reader;
-
-  late final AuthDataSource _dataSource = _reader(authDataSourceProvider);
+  late final firebase.FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<Result<AppUser>> signIn() {
-    return Result.guardFuture(() async => AppUser.from(await _dataSource.signIn()));
+  Future<Result<AppUser>> signIn() async {
+    final account = await GoogleSignIn().signIn();
+    if (account == null) {
+      return throw StateError('Maybe user canceled.');
+    }
+    final auth = await account.authentication;
+    final firebase.AuthCredential authCredential =
+    firebase.GoogleAuthProvider.credential(
+      idToken: auth.idToken,
+      accessToken: auth.accessToken,
+    );
+
+    final credential = await _firebaseAuth.signInWithCredential(authCredential);
+    final currentUser = await firebase.FirebaseAuth.instance.currentUser;
+    assert(credential.user?.uid == currentUser?.uid);
+
+    return Result.guardFuture(() async => AppUser.from(credential.user));
   }
 
   @override
   Future<Result<void>> signOut() {
-    return Result.guardFuture(_dataSource.signOut);
+    return Result.guardFuture(_firebaseAuth.signOut);
   }
 }

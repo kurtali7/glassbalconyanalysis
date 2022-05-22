@@ -6,6 +6,8 @@ part of 'news_data_source.dart';
 // RetrofitGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 class _NewsDataSource implements NewsDataSource {
   _NewsDataSource(this._dio, {this.baseUrl});
 
@@ -29,9 +31,10 @@ class _NewsDataSource implements NewsDataSource {
       r'apiKey': apiKey
     };
     queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<News>(
-        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+        Options(method: 'GET', headers: _headers, extra: _extra)
             .compose(_dio.options, '/v2/everything',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));

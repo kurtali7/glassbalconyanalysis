@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:glassbalconyanalysis/ui/route/routing_constans.dart';
+import 'package:glassbalconyanalysis/view/setting_page.dart';
 
-import '../home/home_page.dart';
-import '../setting/settings.dart';
+import '../../view/home_page.dart';
+
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
